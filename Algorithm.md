@@ -1,0 +1,12 @@
+
+- [x] https://leetcode.com/problems/remove-element/description/
+- [x] https://leetcode.com/problems/single-number/description/
+- [x] https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/
+- [ ] https://leetcode.com/problems/two-sum/description/
+- [ ] https://leetcode.com/problems/palindrome-number/description/
+- [ ] https://leetcode.com/problems/palindrome-number/description/
+- [ ] https://leetcode.com/problems/palindrome-number/description/
+- [ ] 二分查找 binary search
+- [ ] 插排 insertion sort
+- [ ] 冒泡 bubble sort
+- [ ]  fizzbuzz
