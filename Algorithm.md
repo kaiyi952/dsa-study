@@ -15,343 +15,169 @@ linkedList:
 
 ```js
 class listNode {
-
-constructor(value) {
-
-this.value = value;
-
-this.next = null;
-
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
 }
-
-}
-
-  
 
 class LinkedList {
+  constructor() {
+    this.head = null;
+  }
 
-constructor() {
+  append(value) {
+    const newNode = new listNode(value);
+    if (!this.head) {
+      this.head = newNode;
+      return;
+    }
+    let current = this.head;
+    while (current.next) {
+      current = current.next;
+    }
+    current.next = newNode;
+  }
 
-this.head = null;
+  prepend(value) {
+    const newNode = new listNode(value);
+    if (!this.head) {
+      this.head = newNode;
+      return;
+    }
+    newNode.next = this.head;
+    this.head = newNode;
+  }
 
+  find(value) {
+    if (this.head.value === value) return this.head;
+    let current = this.head;
+    while (current) {
+      if (current.value === value) return current;
+      current = current.next;
+    }
+  }
+
+  delete(value) {
+    if (!this.head) return;
+    let current = this.head;
+    if (current.next && current.next.value !== value) {
+      current = current.next;
+    }
+    if (current.next) {
+      current.next = current.next.next;
+    }
+  }
+
+  print() {
+    let current = this.head;
+    const values = [];
+    while (current) {
+      values.push(current.value);
+      current = current.next;
+    }
+    console.log(values.join("->"));
+  }
 }
 
-  
-
-append(value) {
-
-const newNode = new listNode(value)
-
-if (!this.head) {
-
-this.head = newNode;
-
-return
-
-}
-
-let current = this.head;
-
-while (current.next) {
-
-current = current.next
-
-}
-
-current.next = newNode
-
-}
-
-  
-
-prepend(value) {
-
-const newNode = new listNode(value);
-
-if (!this.head) {
-
-this.head = newNode;
-
-return
-
-}
-
-newNode.next = this.head
-
-this.head = newNode
-
-}
-
-  
-  
-
-find(value) {
-
-if (this.head.value === value) return this.head;
-
-let current = this.head
-
-while (current) {
-
-if (current.value === value)
-
-return current
-
-current = current.next
-
-}
-
-}
-
-  
-
-delete(value) {
-
-if (!this.head) return;
-
-let current = this.head
-
-if (current.next && current.next.value !== value) {
-
-current = current.next
-
-}
-
-if (current.next) {
-
-current.next = current.next.next
-
-}
-
-}
-
-  
-
-print() {
-
-let current = this.head;
-
-const values = [];
-
-while (current) {
-
-values.push(current.value)
-
-current = current.next;
-
-}
-
-console.log(values.join("->"))
-
-}
-
-}
-
-  
-
-const list = new LinkedList();
-
-list.append(1)
-
-list.append(2)
-
-list.append(3)
-
-list.prepend(0)
-
-list.print()
-
-console.log(list.find(1))
-
-console.log(list)
 ```
 
 DoublyLinkedList:
 
 ```js
 class DoublyListNode {
-
-constructor(value) {
-
-this.value = value;
-
-this.next = null;
-
-this.prev = null;
-
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.prev = null;
+  }
 }
-
-}
-
-  
 
 class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
 
-constructor() {
+  append(value) {
+    const newNode = new DoublyListNode(value);
+    if (!this.head) {
+      this.head = this.tail = newNode;
+      return;
+    }
+    this.tail.next = newNode;
+    newNode.prev = this.tail;
+    this.tail = newNode;
+  }
 
-this.head = null;
+  prepend(value) {
+    const newNode = new DoublyListNode(value);
+    if (!this.head) {
+      this.head = this.tail = newNode;
+      return;
+    }
+    newNode.next = this.head;
+    this.head.prev = newNode;
+    this.head = newNode;
+  }
 
-this.tail = null;
+  find(value) {
+    let current = this.head;
+    while (current) {
+      if (current.value === value) return current;
+      current = current.next;
+    }
+    return null;
+  }
 
+  delete(value) {
+    if (!this.head) return;
+
+    // Case 1: The value to delete is the head
+    if (this.head.value === value) {
+      if (this.head === this.tail) {
+        this.head = this.tail = null;
+      } else {
+        this.head = this.head.next;
+        this.head.prev = null;
+      }
+      return;
+    }
+
+    let current = this.head;
+    while (current && current.value !== value) {
+      current = current.next;
+    }
+
+    // Case 2: The value to delete is found
+    if (current) {
+      if (current === this.tail) {
+        this.tail = current.prev;
+        this.tail.next = null;
+      } else {
+        current.prev.next = current.next;
+        current.next.prev = current.prev;
+      }
+    }
+  }
+
+  print() {
+    let current = this.head;
+    const values = [];
+    while (current) {
+      values.push(current.value);
+      current = current.next;
+    }
+    console.log(values.join("<->"));
+  }
 }
-
-  
-
-append(value) {
-
-const newNode = new DoublyListNode(value);
-
-if (!this.head) {
-
-this.head = this.tail = newNode;
-
-return;
-
-}
-
-this.tail.next = newNode;
-
-newNode.prev = this.tail;
-
-this.tail = newNode;
-
-}
-
-  
-
-prepend(value) {
-
-const newNode = new DoublyListNode(value);
-
-if (!this.head) {
-
-this.head = this.tail = newNode;
-
-return;
-
-}
-
-newNode.next = this.head;
-
-this.head.prev = newNode;
-
-this.head = newNode;
-
-}
-
-  
-
-find(value) {
-
-let current = this.head;
-
-while (current) {
-
-if (current.value === value) return current;
-
-current = current.next;
-
-}
-
-return null;
-
-}
-
-  
-
-delete(value) {
-
-if (!this.head) return;
-
-  
-
-// Case 1: The value to delete is the head
-
-if (this.head.value === value) {
-
-if (this.head === this.tail) {
-
-this.head = this.tail = null;
-
-} else {
-
-this.head = this.head.next;
-
-this.head.prev = null;
-
-}
-
-return;
-
-}
-
-  
-
-let current = this.head;
-
-while (current && current.value !== value) {
-
-current = current.next;
-
-}
-
-  
-
-// Case 2: The value to delete is found
-
-if (current) {
-
-if (current === this.tail) {
-
-this.tail = current.prev;
-
-this.tail.next = null;
-
-} else {
-
-current.prev.next = current.next;
-
-current.next.prev = current.prev;
-
-}
-
-}
-
-}
-
-  
-
-print() {
-
-let current = this.head;
-
-const values = [];
-
-while (current) {
-
-values.push(current.value);
-
-current = current.next;
-
-}
-
-console.log(values.join("<->"));
-
-}
-
-}
-
-  
 
 const doublyList = new DoublyLinkedList();
+doublyList.append(1);
+doublyList.append(2);
+doublyList.print();
+console.log(doublyList);
 
-doublyList.append(1)
-
-doublyList.append(2)
-
-doublyList.print()
-
-console.log(doublyList)
 ```
 
 Tree:

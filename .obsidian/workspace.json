@@ -93,7 +93,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "848f3f1067dcf888",
@@ -194,7 +195,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c9604a2787c6c591",
+  "active": "33b1f18ef205f00c",
   "lastOpenFiles": [
     "Data Structure.md",
     "Algorithm.md",
